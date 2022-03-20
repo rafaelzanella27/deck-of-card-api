@@ -1,6 +1,6 @@
 package com.estudos.deckofcardsapi.domain;
 
-public class Carta {
+public class CartaDomain {
 
     private String imagem;
     private String valor;
