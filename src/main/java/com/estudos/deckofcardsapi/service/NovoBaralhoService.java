@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.Map;
 
 @Service
-public class BaralhoService {
+public class NovoBaralhoService {
 
     @Autowired
     FeignClient feignClient;

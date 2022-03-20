@@ -1,6 +1,7 @@
 package com.estudos.deckofcardsapi.controller;
 
-import com.estudos.deckofcardsapi.service.BaralhoService;
+import com.estudos.deckofcardsapi.service.NovoBaralhoEmbaralhadoService;
+import com.estudos.deckofcardsapi.service.NovoBaralhoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,11 +14,20 @@ import java.util.Map;
 public class Controller {
 
     @Autowired
-    BaralhoService baralhoService;
+    NovoBaralhoService novoBaralhoService;
+
+    @Autowired
+    NovoBaralhoEmbaralhadoService novoBaralhoEmbaralhadoService;
 
     @GetMapping("/novoBaralho/")
     public ResponseEntity novoBaralho(){
-        Map<String, Object> dtoResponse = baralhoService.execute();
+        Map<String, Object> dtoResponse = novoBaralhoService.execute();
+        return new ResponseEntity(dtoResponse, HttpStatus.OK);
+    }
+
+    @GetMapping("/novoBaralhoEmbaralhado/")
+    public ResponseEntity novoBaralhoEmbaralhado(){
+        Map<String, Object> dtoResponse = novoBaralhoEmbaralhadoService.execute();
         return new ResponseEntity(dtoResponse, HttpStatus.OK);
     }
 }

@@ -11,4 +11,7 @@ public interface FeignClient {
 
     @GetMapping("/new/")
     Map<String, Object> novoBaralho();
+
+    @GetMapping("/new/shuffle/?deck_count=1")
+    Map<String, Object> novoBaralhoEmbaralhado();
 }
