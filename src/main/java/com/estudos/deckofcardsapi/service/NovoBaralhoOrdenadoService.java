@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.Map;
 
 @Service
-public class NovoBaralhoEmbaralhadoService {
+public class NovoBaralhoOrdenadoService {
 
     @Autowired
     ResourceFeignClient resourceFeignClient;
@@ -18,7 +18,7 @@ public class NovoBaralhoEmbaralhadoService {
     ExtensaoJasonApp extensaoJasonApp;
 
     public Map<String, Object> execute(){
-        Map<String, Object> retornoApiExterna = resourceFeignClient.novoBaralhoEmbaralhado();
+        Map<String, Object> retornoApiExterna = resourceFeignClient.novoBaralhoOrdenado();
         String objetoJson = this.extensaoJasonApp.transformaObjetoEmStringJson(NovoBaralhoEntity.inicializa(retornoApiExterna).geraSaida());
         return this.extensaoJasonApp.transforma(objetoJson);
     }

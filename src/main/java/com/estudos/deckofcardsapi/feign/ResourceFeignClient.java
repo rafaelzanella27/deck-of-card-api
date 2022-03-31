@@ -13,7 +13,7 @@ import java.util.Map;
 public interface ResourceFeignClient {
 
     @GetMapping("/new/")
-    Map<String, Object> novoBaralho();
+    Map<String, Object> novoBaralhoOrdenado();
 
     @GetMapping("/new/shuffle/?deck_count=1")
     Map<String, Object> novoBaralhoEmbaralhado();

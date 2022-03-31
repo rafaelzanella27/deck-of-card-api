@@ -1,20 +1,21 @@
 package com.estudos.deckofcardsapi.domain;
 
 import java.util.List;
+import java.util.Map;
 
 public class BaralhoDomain {
 
-    private Boolean sucesso;
+    private String sucesso;
     private String baralho_id;
-    private Boolean embaralhado;
+    private String embaralhado;
     private String restante;
-    private List<CartaDomain> cartaDomains;
+    private List<Map<String, Object>> cartas;
 
-    public Boolean getSucesso() {
+    public String getSucesso() {
         return sucesso;
     }
 
-    public void setSucesso(Boolean sucesso) {
+    public void setSucesso(String sucesso) {
         this.sucesso = sucesso;
     }
 
@@ -26,11 +27,11 @@ public class BaralhoDomain {
         this.baralho_id = baralho_id;
     }
 
-    public Boolean getEmbaralhado() {
+    public String getEmbaralhado() {
         return embaralhado;
     }
 
-    public void setEmbaralhado(Boolean embaralhado) {
+    public void setEmbaralhado(String embaralhado) {
         this.embaralhado = embaralhado;
     }
 
@@ -42,11 +43,11 @@ public class BaralhoDomain {
         this.restante = restante;
     }
 
-    public List<CartaDomain> getCartaDomains() {
-        return cartaDomains;
+    public List<Map<String, Object>> getCartas() {
+        return cartas;
     }
 
-    public void setCartaDomains(List<CartaDomain> cartaDomains) {
-        this.cartaDomains = cartaDomains;
+    public void setCartas(List<Map<String, Object>> cartas) {
+        this.cartas = cartas;
     }
 }
