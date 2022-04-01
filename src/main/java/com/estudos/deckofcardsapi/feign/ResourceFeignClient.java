@@ -20,4 +20,7 @@ public interface ResourceFeignClient {
 
     @GetMapping("/{deck_id}/draw/")
     Map<String, Object> tirarCarta(@PathVariable("deck_id") String deck_id, @RequestParam("count") String count);
+
+    @GetMapping("/{deck_id}/shuffle/")
+    Map<String, Object> reembaralhar(@PathVariable("deck_id") String deck_id);
 }
