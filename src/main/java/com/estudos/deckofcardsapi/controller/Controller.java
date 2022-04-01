@@ -1,9 +1,6 @@
 package com.estudos.deckofcardsapi.controller;
 
-import com.estudos.deckofcardsapi.service.NovoBaralhoEmbaralhadoService;
-import com.estudos.deckofcardsapi.service.NovoBaralhoOrdenadoService;
-import com.estudos.deckofcardsapi.service.ReembaralharCartasService;
-import com.estudos.deckofcardsapi.service.TirarCartaService;
+import com.estudos.deckofcardsapi.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +26,9 @@ public class Controller {
     @Autowired
     ReembaralharCartasService reembaralharCartasService;
 
+    @Autowired
+    NovoBaralhoParcialEmbaralhadoService novoBaralhoParcialEmbaralhadoService;
+
     @GetMapping("/novoBaralhoOrdenado/")
     public ResponseEntity novoBaralhoOrdenado(){
         Map<String, Object> dtoResponse = novoBaralhoOrdenadoService.execute();
@@ -50,6 +50,12 @@ public class Controller {
     @GetMapping("/reembaralhar/{deck_id}")
     public ResponseEntity reembaralhar(@PathVariable("deck_id") String deck_id){
         Map<String, Object> dtoResponse = reembaralharCartasService.execute(deck_id);
+        return new ResponseEntity(dtoResponse, HttpStatus.OK);
+    }
+
+    @GetMapping("/novoBaralhoParcial/")
+    public ResponseEntity novoBaralhoParcial(@RequestParam("cards") String cards){
+        Map<String, Object> dtoResponse = novoBaralhoParcialEmbaralhadoService.execute(cards);
         return new ResponseEntity(dtoResponse, HttpStatus.OK);
     }
 }

@@ -6,11 +6,11 @@ FUNÇÕES ATIVAS:
 2) Novo Baralho embaralhado (Shuffle the Cards).
 3) Tirar uma carta (Draw a Card).
 4) Reembaralhar cartas (Reshuffle the Cards). 
+5) Tirar um baralho parcial embaralhado (A Partial Deck).
 
 FUNÇÕES PENDENTES:
-1) Tirar um baralho parcial (A Partial Deck). -- (EM DESENVOLVIMENTO).
-2) Adicionando cartas a Pilha (Adding to Piles).
-3) Embaralhar Pilhas (Shuffle Piles).
-4) Listar cartas da Pilha (Listing Cards in Piles).
-5) Tirar cartas da Pilha (Drawing from Piles).
-6) Retornar cartas ao baralho principal (Returning cards to the deck).
+1) Adicionando cartas a Pilha (Adding to Piles). -- (EM DESENVOLVIMENTO).
+2) Embaralhar Pilhas (Shuffle Piles).
+3) Listar cartas da Pilha (Listing Cards in Piles).
+4) Tirar cartas da Pilha (Drawing from Piles).
+5) Retornar cartas ao baralho principal (Returning cards to the deck).

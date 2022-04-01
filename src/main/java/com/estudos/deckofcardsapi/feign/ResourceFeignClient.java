@@ -23,4 +23,7 @@ public interface ResourceFeignClient {
 
     @GetMapping("/{deck_id}/shuffle/")
     Map<String, Object> reembaralhar(@PathVariable("deck_id") String deck_id);
+
+    @GetMapping("/new/shuffle/?cards")
+    Map<String, Object> novoBaralhoParcialEmbaralhado(@RequestParam("cards") String cards);
 }
