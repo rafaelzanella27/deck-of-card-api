@@ -28,6 +28,10 @@ public class DeckToBaralhoDomainAdapter {
                 List<Map<String, Object>> cartaDomainList = this.converteCartas(cardsList);
                 baralhoDomain.setCartas(cartaDomainList);
             }
+            if (entrada.containsKey("piles")){
+                Map<String, Object> pilhas = (Map<String, Object>) entrada.get("piles");
+                baralhoDomain.setPilhas(pilhas);
+            }
         }
         return baralhoDomain;
     }

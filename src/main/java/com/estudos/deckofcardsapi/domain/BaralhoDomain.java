@@ -10,6 +10,15 @@ public class BaralhoDomain {
     private String embaralhado;
     private String restante;
     private List<Map<String, Object>> cartas;
+    private Map<String, Object> pilhas;
+
+    public Map<String, Object> getPilhas() {
+        return pilhas;
+    }
+
+    public void setPilhas(Map<String, Object> pilhas) {
+        this.pilhas = pilhas;
+    }
 
     public String getSucesso() {
         return sucesso;
