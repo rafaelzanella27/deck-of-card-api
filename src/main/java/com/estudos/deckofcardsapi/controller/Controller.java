@@ -41,6 +41,9 @@ public class Controller {
     @Autowired
     TirarCartaPilhaService tirarCartaPilhaService;
 
+    @Autowired
+    SomarCartaPilhaService somarCartaPilhaService;
+
     @GetMapping("/novoBaralhoOrdenado/")
     public ResponseEntity novoBaralhoOrdenado(){
         Map<String, Object> dtoResponse = novoBaralhoOrdenadoService.execute();
@@ -94,4 +97,17 @@ public class Controller {
         Map<String, Object> dtoResponse = tirarCartaPilhaService.execute(deck_id, pile_name, count);
         return new ResponseEntity(dtoResponse, HttpStatus.OK);
     }
+
+    @GetMapping("/baralho/{deck_id}/pilha/{pile_name}/somar/")
+    public ResponseEntity somarCartasJogador(@PathVariable("deck_id") String deck_id, @PathVariable("pile_name") String pile_name){
+        Map<String, Object> dtoResponse = somarCartaPilhaService.somarCartaPilha(deck_id, pile_name);
+        return new ResponseEntity(dtoResponse, HttpStatus.OK);
+    }
+
+    @GetMapping("/baralho/{deck_id}/gerarResultado/")
+    public ResponseEntity gerarResultado(@PathVariable("deck_id") String deck_id){
+        Map<String, Object> dtoResponse = somarCartaPilhaService.gerarResultado(deck_id);
+        return new ResponseEntity(dtoResponse, HttpStatus.OK);
+    }
+
 }

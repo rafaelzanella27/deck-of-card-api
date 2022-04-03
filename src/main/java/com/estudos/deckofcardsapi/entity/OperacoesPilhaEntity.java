@@ -3,6 +3,7 @@ package com.estudos.deckofcardsapi.entity;
 import com.estudos.deckofcardsapi.domain.BaralhoDomain;
 import com.estudos.deckofcardsapi.entity.adapter.AdicionaCartaPilhaToMapAdapter;
 import com.estudos.deckofcardsapi.entity.adapter.ConverteToBaralhoDomainAdapter;
+import com.estudos.deckofcardsapi.entity.adapter.SomaCartasPilhaToMapAdapter;
 
 import java.util.Map;
 import java.util.Objects;
@@ -31,6 +32,15 @@ public class OperacoesPilhaEntity {
         BaralhoDomain baralhoDomain = this.converteToBaralhoDomain();
         if (Objects.nonNull(baralhoDomain)){
             Map<String, Object> saida = AdicionaCartaPilhaToMapAdapter.inicializa().execute(baralhoDomain, this.pilha);
+            return saida ;
+        }
+        return null;
+    }
+
+    public Map<String, Object> geraSomatoriaCartas(){
+        BaralhoDomain baralhoDomain = this.converteToBaralhoDomain();
+        if (Objects.nonNull(baralhoDomain)){
+            Map<String, Object> saida = SomaCartasPilhaToMapAdapter.inicializa().execute(baralhoDomain, this.pilha);
             return saida ;
         }
         return null;
