@@ -44,9 +44,9 @@ public class Controller {
         return new ResponseEntity(dtoResponse, HttpStatus.OK);
     }
 
-    @GetMapping("/tirarCarta/baralho/{deck_id}")
-    public ResponseEntity tirarCarta(@PathVariable("deck_id") String deck_id, @RequestParam("count") String count){
-        Map<String, Object> dtoResponse = tirarCartaService.execute(deck_id, count);
+    @GetMapping("/novoBaralhoParcial/")
+    public ResponseEntity novoBaralhoParcial(@RequestParam("cards") String cards){
+        Map<String, Object> dtoResponse = novoBaralhoParcialEmbaralhadoService.execute(cards);
         return new ResponseEntity(dtoResponse, HttpStatus.OK);
     }
 
@@ -56,9 +56,9 @@ public class Controller {
         return new ResponseEntity(dtoResponse, HttpStatus.OK);
     }
 
-    @GetMapping("/novoBaralhoParcial/")
-    public ResponseEntity novoBaralhoParcial(@RequestParam("cards") String cards){
-        Map<String, Object> dtoResponse = novoBaralhoParcialEmbaralhadoService.execute(cards);
+    @GetMapping("/tirarCarta/baralho/{deck_id}")
+    public ResponseEntity tirarCarta(@PathVariable("deck_id") String deck_id, @RequestParam("count") String count){
+        Map<String, Object> dtoResponse = tirarCartaService.execute(deck_id, count);
         return new ResponseEntity(dtoResponse, HttpStatus.OK);
     }
 

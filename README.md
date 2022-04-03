@@ -6,7 +6,7 @@ FUNÇÕES ATIVAS:
 2) Novo Baralho embaralhado (Shuffle the Cards).
 3) Tirar uma carta (Draw a Card).
 4) Reembaralhar cartas (Reshuffle the Cards). 
-5) Tirar um baralho parcial embaralhado (A Partial Deck).
+5) Novo Baralho parcial embaralhado (A Partial Deck).
 
 FUNÇÕES PENDENTES:
 1) Adicionando cartas a Pilha (Adding to Piles). -- (EM DESENVOLVIMENTO).

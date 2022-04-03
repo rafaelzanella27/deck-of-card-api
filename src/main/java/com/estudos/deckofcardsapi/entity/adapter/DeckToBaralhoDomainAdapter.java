@@ -21,7 +21,7 @@ public class DeckToBaralhoDomainAdapter {
                 baralhoDomain.setEmbaralhado(booleanToString(entrada.get("shuffled").toString()));
             }
             if (entrada.containsKey("remaining") && Objects.nonNull(entrada.get("remaining"))){
-                baralhoDomain.setRestante(entrada.get("remaining").toString());
+                baralhoDomain.setRestante(this.converteStringToInteger(Float.parseFloat(entrada.get("remaining").toString())));
             }
             if (entrada.containsKey("cards")){
                 List<Map<String, Object>> cardsList = (ArrayList<Map<String, Object>>) entrada.get("cards");
@@ -30,10 +30,15 @@ public class DeckToBaralhoDomainAdapter {
             }
             if (entrada.containsKey("piles")){
                 Map<String, Object> pilhas = (Map<String, Object>) entrada.get("piles");
-                baralhoDomain.setPilhas(pilhas);
+                baralhoDomain.setPilhas(this.convertePilhas(pilhas));
             }
         }
         return baralhoDomain;
+    }
+
+    private Integer converteStringToInteger (float valor){
+        Integer resultado = (int)valor;
+        return resultado;
     }
 
     private List<Map<String, Object>> converteCartas(List<Map<String, Object>> cardsList){
@@ -48,6 +53,21 @@ public class DeckToBaralhoDomainAdapter {
             cartaDomainList.add(carta);
         }
         return cartaDomainList;
+    }
+
+    private Map<String, Object> convertePilhas(Map<String, Object> pilhas){
+        Map<String, Object> pilhasMap = new HashMap<>();
+        if (Objects.nonNull(pilhas)){
+            if (pilhas.containsKey("jogador1") && Objects.nonNull(pilhas.get("jogador1"))){
+                Map<String, Object> jogadorMap = (Map<String, Object>) pilhas.get("jogador1");
+                Map<String, Object> jogador1 = new HashMap<>();
+                if (Objects.nonNull(jogadorMap) && jogadorMap.containsKey("remaining")){
+                    jogador1.put("restante", jogadorMap.get("remaining"));
+                }
+                pilhasMap.put("jogador1", jogador1);
+            }
+        }
+        return pilhasMap;
     }
 
     private String booleanToString(String valor){

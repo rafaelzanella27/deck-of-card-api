@@ -28,5 +28,5 @@ public interface ResourceFeignClient {
     Map<String, Object> novoBaralhoParcialEmbaralhado(@RequestParam("cards") String cards);
 
     @GetMapping("/{deck_id}/pile/{pile_name}/add/?cards")
-    Map<String, Object> adicionarCartasPilha(@PathVariable("deck_id") String deck_id,@PathVariable("pile_name") String pile_name, @RequestParam("count") String count);
+    Map<String, Object> adicionarCartasPilha(@PathVariable("deck_id") String deck_id,@PathVariable("pile_name") String pile_name, @RequestParam("cards") String cards);
 }

@@ -8,7 +8,7 @@ public class BaralhoDomain {
     private String sucesso;
     private String baralho_id;
     private String embaralhado;
-    private String restante;
+    private Integer restante;
     private List<Map<String, Object>> cartas;
     private Map<String, Object> pilhas;
 
@@ -44,11 +44,11 @@ public class BaralhoDomain {
         this.embaralhado = embaralhado;
     }
 
-    public String getRestante() {
+    public Integer getRestante() {
         return restante;
     }
 
-    public void setRestante(String restante) {
+    public void setRestante(Integer restante) {
         this.restante = restante;
     }
 
