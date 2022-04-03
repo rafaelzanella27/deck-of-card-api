@@ -8,9 +8,9 @@ FUNÇÕES ATIVAS:
 4) Reembaralhar cartas (Reshuffle the Cards). 
 5) Novo Baralho parcial embaralhado (A Partial Deck).
 6) Embaralhar Pilhas (Shuffle Piles).
+7) Listar cartas da Pilha (Listing Cards in Piles).
+8) Adicionando cartas a Pilha (Adding to Piles).
 
 FUNÇÕES PENDENTES:
-1) Adicionando cartas a Pilha (Adding to Piles). -- (EM DESENVOLVIMENTO).
-2) Listar cartas da Pilha (Listing Cards in Piles) -- (EM DESENVOLVIMENTO).
-3) Tirar cartas da Pilha (Drawing from Piles).
-4) Retornar cartas ao baralho principal (Returning cards to the deck).
+1) Tirar cartas da Pilha (Drawing from Piles). -- (EM DESENVOLVIMENTO). 
+2) Retornar cartas ao baralho principal (Returning cards to the deck).

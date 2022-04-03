@@ -4,17 +4,17 @@ import com.estudos.deckofcardsapi.domain.BaralhoDomain;
 
 import java.util.*;
 
-public class ListarBaralhoCriadoToMapAdapter {
+public class AdicionaCartaPilhaToMapAdapter {
 
-    private ListarBaralhoCriadoToMapAdapter(){
+    private AdicionaCartaPilhaToMapAdapter(){
 
     }
 
-    public static ListarBaralhoCriadoToMapAdapter inicializa(){
-        return new ListarBaralhoCriadoToMapAdapter();
+    public static AdicionaCartaPilhaToMapAdapter inicializa(){
+        return new AdicionaCartaPilhaToMapAdapter();
     }
 
-    public Map<String, Object> converte(BaralhoDomain baralhoDomain, String nomePilha){
+    public Map<String, Object> execute(BaralhoDomain baralhoDomain, String nomePilha){
         Map<String, Object> baralhoMap = new HashMap<>();
         if (Objects.nonNull(baralhoDomain)){
             if (Objects.nonNull(baralhoDomain.getBaralho_id())){
@@ -34,25 +34,25 @@ public class ListarBaralhoCriadoToMapAdapter {
             }
             if (Objects.nonNull(baralhoDomain.getPilhas())){
                 Map<String, Object> pilhas = baralhoDomain.getPilhas();
-                baralhoMap.put("pilhas", this.listarPilha(pilhas, nomePilha));
+                baralhoMap.put("pilhas", this.pilha(pilhas, nomePilha));
             }
         }
         return baralhoMap;
     }
 
-    private Map<String, Object> listarPilha(Map<String, Object> pilhas, String pilha){
-        if (Objects.nonNull(pilha)){
-            if (pilha.equalsIgnoreCase("jogador1")){
-                return this.listarJogador1(pilhas);
-            } else if (pilha.equalsIgnoreCase("jogador2")){
-                return this.listarJogador2(pilhas);
-            } else if (pilha.equalsIgnoreCase("jogador3")){
-                return this.listarJogador3(pilhas);
-            } else return this.listarJogador4(pilhas);
+    private Map<String, Object> pilha(Map<String, Object> pilhas, String nomePilha){
+        if (Objects.nonNull(nomePilha)){
+            if (nomePilha.equalsIgnoreCase("jogador1")){
+                return this.jogador1(pilhas);
+            } else if (nomePilha.equalsIgnoreCase("jogador2")){
+                return this.jogador2(pilhas);
+            } else if (nomePilha.equalsIgnoreCase("jogador3")){
+                return this.jogador3(pilhas);
+            } else return this.jogador4(pilhas);
         } return null;
     }
 
-    private Map<String, Object> listarJogador1 (Map<String, Object> pilhas){
+    private Map<String, Object> jogador1 (Map<String, Object> pilhas){
         Map<String, Object> pilhasMap = new HashMap<>();
         Map<String, Object> jogador1 = new HashMap<>();
 
@@ -72,7 +72,7 @@ public class ListarBaralhoCriadoToMapAdapter {
         }return pilhasMap;
     }
 
-    private Map<String, Object> listarJogador2 (Map<String, Object> pilhas){
+    private Map<String, Object> jogador2 (Map<String, Object> pilhas){
         Map<String, Object> pilhasMap = new HashMap<>();
         Map<String, Object> jogador2 = new HashMap<>();
 
@@ -92,7 +92,7 @@ public class ListarBaralhoCriadoToMapAdapter {
         }return pilhasMap;
     }
 
-    private Map<String, Object> listarJogador3 (Map<String, Object> pilhas){
+    private Map<String, Object> jogador3 (Map<String, Object> pilhas){
         Map<String, Object> pilhasMap = new HashMap<>();
         Map<String, Object> jogador3 = new HashMap<>();
 
@@ -112,7 +112,7 @@ public class ListarBaralhoCriadoToMapAdapter {
         }return pilhasMap;
     }
 
-    private Map<String, Object> listarJogador4 (Map<String, Object> pilhas){
+    private Map<String, Object> jogador4 (Map<String, Object> pilhas){
         Map<String, Object> pilhasMap = new HashMap<>();
         Map<String, Object> jogador4 = new HashMap<>();
 

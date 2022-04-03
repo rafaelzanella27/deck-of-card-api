@@ -1,6 +1,6 @@
 package com.estudos.deckofcardsapi.service;
 
-import com.estudos.deckofcardsapi.entity.ListarPilhaEntity;
+import com.estudos.deckofcardsapi.entity.OperacoesPilhaEntity;
 import com.estudos.deckofcardsapi.feign.ResourceFeignClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ public class ListarPilhaService {
 
     public Map<String, Object> execute(String deck_id, String pile_name){
         Map<String, Object> retornoApiExterna = resourceFeignClient.listarPilha(deck_id, pile_name);
-        ListarPilhaEntity listarPilhaEntity = ListarPilhaEntity.inicializa(retornoApiExterna, pile_name);
-        return listarPilhaEntity.geraSaida();
+        OperacoesPilhaEntity operacoesPilhaEntity = OperacoesPilhaEntity.inicializa(retornoApiExterna, pile_name);
+        return operacoesPilhaEntity.geraSaida();
     }
 }
