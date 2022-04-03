@@ -5,9 +5,9 @@ import com.estudos.deckofcardsapi.enums.NipeType;
 
 import java.util.*;
 
-public class DeckToBaralhoDomainAdapter {
+public class ConverteToBaralhoDomainAdapter {
 
-    public BaralhoDomain converte(Map<String, Object> entrada){
+    public BaralhoDomain converte(Map<String, Object> entrada, String pilha){
         BaralhoDomain baralhoDomain = new BaralhoDomain();
         if (Objects.nonNull(entrada)){
 
@@ -30,7 +30,7 @@ public class DeckToBaralhoDomainAdapter {
             }
             if (entrada.containsKey("piles")){
                 Map<String, Object> pilhasApi = (Map<String, Object>) entrada.get("piles");
-                baralhoDomain.setPilhas(this.convertePilhas(pilhasApi));
+                baralhoDomain.setPilhas(this.listarPilha(pilhasApi, pilha));
             }
         }
         return baralhoDomain;
@@ -55,20 +55,21 @@ public class DeckToBaralhoDomainAdapter {
         return cartaDomainList;
     }
 
-    private Map<String, Object> convertePilhas(Map<String, Object> pilhas){
-        if (Objects.nonNull(pilhas)){
-          if (pilhas.containsKey("jogador1") || pilhas.containsKey("jogador2") || pilhas.containsKey("jogador3") || pilhas.containsKey("jogador4")){
-              return this.converteJogador(pilhas);
-          }
+    private Map<String, Object> listarPilha(Map<String, Object> pilhas, String pilha){
+        if (Objects.nonNull(pilha)){
+            if (pilha.equalsIgnoreCase("jogador1")){
+                return this.listarJogador1(pilhas);
+            } else if (pilha.equalsIgnoreCase("jogador2")){
+                return this.listarJogador2(pilhas);
+            } else if (pilha.equalsIgnoreCase("jogador3")){
+                return this.listarJogador3(pilhas);
+            } else return this.listarJogador4(pilhas);
         } return null;
     }
 
-    private Map<String, Object> converteJogador (Map<String, Object> pilhas){
+    private Map<String, Object> listarJogador1 (Map<String, Object> pilhas){
         Map<String, Object> pilhasMap = new HashMap<>();
         Map<String, Object> jogador1 = new HashMap<>();
-        Map<String, Object> jogador2 = new HashMap<>();
-        Map<String, Object> jogador3 = new HashMap<>();
-        Map<String, Object> jogador4 = new HashMap<>();
 
         if (Objects.nonNull(pilhas)){
             if (pilhas.containsKey("jogador1") && Objects.nonNull(pilhas.get("jogador1"))){
@@ -83,39 +84,63 @@ public class DeckToBaralhoDomainAdapter {
                 }
                 pilhasMap.put("jogador1", jogador1);
             }
+        }return pilhasMap;
+    }
+
+    private Map<String, Object> listarJogador2 (Map<String, Object> pilhas){
+        Map<String, Object> pilhasMap = new HashMap<>();
+        Map<String, Object> jogador2 = new HashMap<>();
+
+        if (Objects.nonNull(pilhas)){
             if (pilhas.containsKey("jogador2") && Objects.nonNull(pilhas.get("jogador2"))){
                 Map<String, Object> jogador2Api = (Map<String, Object>) pilhas.get("jogador2");
 
                 if (jogador2Api.containsKey("remaining") && Objects.nonNull(jogador2Api.get("remaining"))){
-                    jogador1.put("restante", jogador2Api.get("remaining"));
+                    jogador2.put("restante", jogador2Api.get("remaining"));
                 }
                 if (jogador2Api.containsKey("cards") && Objects.nonNull(jogador2Api.get("cards"))){
                     List<Map<String, Object>> cardsListApi = (List<Map<String, Object>>) jogador2Api.get("cards");
-                    jogador1.put("cartas", this.converteCartas(cardsListApi));
+                    jogador2.put("cartas", this.converteCartas(cardsListApi));
                 }
                 pilhasMap.put("jogador2", jogador2);
             }
-            if (pilhas.containsKey("jogador3") && Objects.nonNull(pilhas.get("jogador3"))){
-                Map<String, Object> jogador3Api = (Map<String, Object>) pilhas.get("jogador3");
+        }return pilhasMap;
+    }
 
-                if (jogador3Api.containsKey("remaining") && Objects.nonNull(jogador3Api.get("remaining"))){
-                    jogador1.put("restante", jogador3Api.get("remaining"));
+    private Map<String, Object> listarJogador3 (Map<String, Object> pilhas){
+        Map<String, Object> pilhasMap = new HashMap<>();
+        Map<String, Object> jogador3 = new HashMap<>();
+
+        if (Objects.nonNull(pilhas)){
+            if (pilhas.containsKey("jogador3") && Objects.nonNull(pilhas.get("jogador3"))){
+                Map<String, Object> jogadorApi = (Map<String, Object>) pilhas.get("jogador3");
+
+                if (jogadorApi.containsKey("remaining") && Objects.nonNull(jogadorApi.get("remaining"))){
+                    jogador3.put("restante", jogadorApi.get("remaining"));
                 }
-                if (jogador3Api.containsKey("cards") && Objects.nonNull(jogador3Api.get("cards"))){
-                    List<Map<String, Object>> cardsListApi = (List<Map<String, Object>>) jogador3Api.get("cards");
-                    jogador1.put("cartas", this.converteCartas(cardsListApi));
+                if (jogadorApi.containsKey("cards") && Objects.nonNull(jogadorApi.get("cards"))){
+                    List<Map<String, Object>> cardsListApi = (List<Map<String, Object>>) jogadorApi.get("cards");
+                    jogador3.put("cartas", this.converteCartas(cardsListApi));
                 }
                 pilhasMap.put("jogador3", jogador3);
             }
-            if (pilhas.containsKey("jogador4") && Objects.nonNull(pilhas.get("jogador4"))){
-                Map<String, Object> jogador4Api = (Map<String, Object>) pilhas.get("jogador4");
+        }return pilhasMap;
+    }
 
-                if (jogador4Api.containsKey("remaining") && Objects.nonNull(jogador4Api.get("remaining"))){
-                    jogador1.put("restante", jogador4Api.get("remaining"));
+    private Map<String, Object> listarJogador4 (Map<String, Object> pilhas){
+        Map<String, Object> pilhasMap = new HashMap<>();
+        Map<String, Object> jogador4 = new HashMap<>();
+
+        if (Objects.nonNull(pilhas)){
+            if (pilhas.containsKey("jogador4") && Objects.nonNull(pilhas.get("jogador4"))){
+                Map<String, Object> jogadorApi = (Map<String, Object>) pilhas.get("jogador4");
+
+                if (jogadorApi.containsKey("remaining") && Objects.nonNull(jogadorApi.get("remaining"))){
+                    jogador4.put("restante", jogadorApi.get("remaining"));
                 }
-                if (jogador4Api.containsKey("cards") && Objects.nonNull(jogador4Api.get("cards"))){
-                    List<Map<String, Object>> cardsListApi = (List<Map<String, Object>>) jogador4Api.get("cards");
-                    jogador1.put("cartas", this.converteCartas(cardsListApi));
+                if (jogadorApi.containsKey("cards") && Objects.nonNull(jogadorApi.get("cards"))){
+                    List<Map<String, Object>> cardsListApi = (List<Map<String, Object>>) jogadorApi.get("cards");
+                    jogador4.put("cartas", this.converteCartas(cardsListApi));
                 }
                 pilhasMap.put("jogador4", jogador4);
             }

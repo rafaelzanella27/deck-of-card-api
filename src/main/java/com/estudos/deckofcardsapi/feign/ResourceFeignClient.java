@@ -29,4 +29,10 @@ public interface ResourceFeignClient {
 
     @GetMapping("/{deck_id}/pile/{pile_name}/add/?cards")
     Map<String, Object> adicionarCartasPilha(@PathVariable("deck_id") String deck_id,@PathVariable("pile_name") String pile_name, @RequestParam("cards") String cards);
+
+    @GetMapping("/{deck_id}/pile/{pile_name}/shuffle/")
+    Map<String, Object> embaralharPilha(@PathVariable("deck_id") String deck_id,@PathVariable("pile_name") String pile_name);
+
+    @GetMapping("/{deck_id}/pile/{pile_name}/list/")
+    Map<String, Object> listarPilha(@PathVariable("deck_id") String deck_id,@PathVariable("pile_name") String pile_name);
 }
