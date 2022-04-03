@@ -35,4 +35,7 @@ public interface ResourceFeignClient {
 
     @GetMapping("/{deck_id}/pile/{pile_name}/list/")
     Map<String, Object> listarPilha(@PathVariable("deck_id") String deck_id,@PathVariable("pile_name") String pile_name);
+
+    @GetMapping("/{deck_id}/pile/{pile_name}/draw/")
+    Map<String, Object> tirarCartaPilha(@PathVariable("deck_id") String deck_id,@PathVariable("pile_name") String pile_name, @RequestParam("count") String count);
 }

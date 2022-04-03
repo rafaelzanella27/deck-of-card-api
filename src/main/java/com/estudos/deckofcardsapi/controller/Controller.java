@@ -38,6 +38,9 @@ public class Controller {
     @Autowired
     ListarPilhaService listarPilhaService;
 
+    @Autowired
+    TirarCartaPilhaService tirarCartaPilhaService;
+
     @GetMapping("/novoBaralhoOrdenado/")
     public ResponseEntity novoBaralhoOrdenado(){
         Map<String, Object> dtoResponse = novoBaralhoOrdenadoService.execute();
@@ -83,6 +86,12 @@ public class Controller {
     @GetMapping("/baralho/{deck_id}/pilha/{pile_name}/listarPilha/")
     public ResponseEntity listarPilha(@PathVariable("deck_id") String deck_id, @PathVariable("pile_name") String pile_name){
         Map<String, Object> dtoResponse = listarPilhaService.execute(deck_id, pile_name);
+        return new ResponseEntity(dtoResponse, HttpStatus.OK);
+    }
+
+    @GetMapping("/baralho/{deck_id}/pilha/{pile_name}/tirarCartaPilha/")
+    public ResponseEntity tirarCartaPilha(@PathVariable("deck_id") String deck_id, @PathVariable("pile_name") String pile_name, @RequestParam("count") String count){
+        Map<String, Object> dtoResponse = tirarCartaPilhaService.execute(deck_id, pile_name, count);
         return new ResponseEntity(dtoResponse, HttpStatus.OK);
     }
 }

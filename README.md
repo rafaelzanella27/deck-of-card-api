@@ -10,7 +10,7 @@ FUNÇÕES ATIVAS:
 6) Embaralhar Pilhas (Shuffle Piles).
 7) Listar cartas da Pilha (Listing Cards in Piles).
 8) Adicionando cartas a Pilha (Adding to Piles).
+9) Tirar cartas da Pilha (Drawing from Piles).
 
 FUNÇÕES PENDENTES:
-1) Tirar cartas da Pilha (Drawing from Piles). -- (EM DESENVOLVIMENTO). 
-2) Retornar cartas ao baralho principal (Returning cards to the deck).
+1) Retornar cartas ao baralho principal (Returning cards to the deck). -- (EM DESENVOLVIMENTO). 
