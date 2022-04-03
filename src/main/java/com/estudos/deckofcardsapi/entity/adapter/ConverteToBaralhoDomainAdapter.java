@@ -2,6 +2,7 @@ package com.estudos.deckofcardsapi.entity.adapter;
 
 import com.estudos.deckofcardsapi.domain.BaralhoDomain;
 import com.estudos.deckofcardsapi.enums.NipeType;
+import com.estudos.deckofcardsapi.enums.ValorType;
 
 import java.util.*;
 
@@ -48,7 +49,7 @@ public class ConverteToBaralhoDomainAdapter {
             Map<String, Object> carta = new HashMap<>();
             carta.put("codigo", card.get("code"));
             carta.put("imagem", card.get("image"));
-            carta.put("valor", card.get("value"));
+            carta.put("valor", ValorType.converteValor(card.get("value").toString()));
             carta.put("nipe", NipeType.converteNipe(card.get("suit").toString()));
             cartaDomainList.add(carta);
         }
