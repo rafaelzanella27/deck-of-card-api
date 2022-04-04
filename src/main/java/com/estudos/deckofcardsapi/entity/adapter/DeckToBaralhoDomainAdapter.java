@@ -1,8 +1,6 @@
 package com.estudos.deckofcardsapi.entity.adapter;
 
 import com.estudos.deckofcardsapi.domain.BaralhoDomain;
-import com.estudos.deckofcardsapi.enums.NipeType;
-import com.estudos.deckofcardsapi.enums.ValorType;
 
 import java.util.*;
 
@@ -26,8 +24,7 @@ public class DeckToBaralhoDomainAdapter {
             }
             if (entrada.containsKey("cards")){
                 List<Map<String, Object>> cardsList = (ArrayList<Map<String, Object>>) entrada.get("cards");
-                List<Map<String, Object>> cartaDomainList = this.converteCartas(cardsList);
-                baralhoDomain.setCartas(cartaDomainList);
+                baralhoDomain.setCartas(CardsToCartasAdapter.inicializa().converteCartas(cardsList));
             }
             if (entrada.containsKey("piles")){
                 Map<String, Object> pilhasApi = (Map<String, Object>) entrada.get("piles");
@@ -40,20 +37,6 @@ public class DeckToBaralhoDomainAdapter {
     private Integer converteStringToInteger (float valor){
         Integer resultado = (int)valor;
         return resultado;
-    }
-
-    private List<Map<String, Object>> converteCartas(List<Map<String, Object>> cardsList){
-        List<Map<String, Object>> cartaDomainList = new ArrayList<>();
-        for (int i = 0; i < cardsList.size(); i++){
-            Map<String, Object> card = cardsList.get(i);
-            Map<String, Object> carta = new HashMap<>();
-            carta.put("codigo", card.get("code"));
-            carta.put("imagem", card.get("image"));
-            carta.put("valor", ValorType.converteValor(card.get("value").toString()));
-            carta.put("nipe", NipeType.converteNipe(card.get("suit").toString()));
-            cartaDomainList.add(carta);
-        }
-        return cartaDomainList;
     }
 
     private Map<String, Object> convertePilhas(Map<String, Object> pilhas){
@@ -80,7 +63,7 @@ public class DeckToBaralhoDomainAdapter {
                 }
                 if (jogador1Api.containsKey("cards") && Objects.nonNull(jogador1Api.get("cards"))){
                     List<Map<String, Object>> cardsListApi = (List<Map<String, Object>>) jogador1Api.get("cards");
-                    jogador1.put("cartas", this.converteCartas(cardsListApi));
+                    jogador1.put("cartas", CardsToCartasAdapter.inicializa().converteCartas(cardsListApi));
                 }
                 pilhasMap.put("jogador1", jogador1);
             }
@@ -92,7 +75,7 @@ public class DeckToBaralhoDomainAdapter {
                 }
                 if (jogador2Api.containsKey("cards") && Objects.nonNull(jogador2Api.get("cards"))){
                     List<Map<String, Object>> cardsListApi = (List<Map<String, Object>>) jogador2Api.get("cards");
-                    jogador1.put("cartas", this.converteCartas(cardsListApi));
+                    jogador1.put("cartas", CardsToCartasAdapter.inicializa().converteCartas(cardsListApi));
                 }
                 pilhasMap.put("jogador2", jogador2);
             }
@@ -104,7 +87,7 @@ public class DeckToBaralhoDomainAdapter {
                 }
                 if (jogador3Api.containsKey("cards") && Objects.nonNull(jogador3Api.get("cards"))){
                     List<Map<String, Object>> cardsListApi = (List<Map<String, Object>>) jogador3Api.get("cards");
-                    jogador1.put("cartas", this.converteCartas(cardsListApi));
+                    jogador1.put("cartas", CardsToCartasAdapter.inicializa().converteCartas(cardsListApi));
                 }
                 pilhasMap.put("jogador3", jogador3);
             }
@@ -116,7 +99,7 @@ public class DeckToBaralhoDomainAdapter {
                 }
                 if (jogador4Api.containsKey("cards") && Objects.nonNull(jogador4Api.get("cards"))){
                     List<Map<String, Object>> cardsListApi = (List<Map<String, Object>>) jogador4Api.get("cards");
-                    jogador1.put("cartas", this.converteCartas(cardsListApi));
+                    jogador1.put("cartas", CardsToCartasAdapter.inicializa().converteCartas(cardsListApi));
                 }
                 pilhasMap.put("jogador4", jogador4);
             }

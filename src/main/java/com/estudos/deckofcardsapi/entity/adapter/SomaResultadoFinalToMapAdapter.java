@@ -38,8 +38,24 @@ public class SomaResultadoFinalToMapAdapter {
                Map<String, Object> jogador4 = this.jogador4(pilesMap4);
                resultadoMap.put("Jogador4:", jogador4.get("somatoria"));
            }
+
         return resultadoMap;
     }
+
+//    private Boolean verificarEmpate(Map<String, Object> resultadoMap){
+//        ArrayList<Integer> resultadoList = new ArrayList<>();
+//        Integer j1 = Integer.parseInt(resultadoMap.get("jogador1").toString());
+//        Integer j2 = Integer.parseInt(resultadoMap.get("jogador2").toString());
+//        Integer j3 = Integer.parseInt(resultadoMap.get("jogador3").toString());
+//        Integer j4 = Integer.parseInt(resultadoMap.get("jogador4").toString());
+//        resultadoList.add(j1);
+//        resultadoList.add(j2);
+//        resultadoList.add(j3);
+//        resultadoList.add(j4);
+//        Integer resultado = resu
+//
+//        return resultadoFinal;
+//    }
 
     private Integer soma(List<Map<String, Object>> cardsList){
         Integer resultado = 0;

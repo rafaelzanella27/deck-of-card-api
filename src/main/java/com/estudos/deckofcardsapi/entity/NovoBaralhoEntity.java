@@ -23,7 +23,4 @@ public class NovoBaralhoEntity {
         return baralhoDomain;
     }
 
-    public Map<String, Object> getEntrada(){
-        return this.entrada;
-    }
 }

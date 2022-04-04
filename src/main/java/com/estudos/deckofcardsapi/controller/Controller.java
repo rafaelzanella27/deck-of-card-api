@@ -15,19 +15,13 @@ import java.util.Map;
 public class Controller {
 
     @Autowired
-    NovoBaralhoOrdenadoService novoBaralhoOrdenadoService;
-
-    @Autowired
-    NovoBaralhoEmbaralhadoService novoBaralhoEmbaralhadoService;
-
-    @Autowired
     TirarCartaService tirarCartaService;
 
     @Autowired
     ReembaralharCartasService reembaralharCartasService;
 
     @Autowired
-    NovoBaralhoParcialEmbaralhadoService novoBaralhoParcialEmbaralhadoService;
+    NovoBaralhoService novoBaralhoService;
 
     @Autowired
     AdicionarCartaNaPilhaService adicionarCartaNaPilhaService;
@@ -46,19 +40,19 @@ public class Controller {
 
     @GetMapping("/novoBaralhoOrdenado/")
     public ResponseEntity novoBaralhoOrdenado(){
-        Map<String, Object> dtoResponse = novoBaralhoOrdenadoService.execute();
+        Map<String, Object> dtoResponse = novoBaralhoService.novoBaralhoOrdenado();
         return new ResponseEntity(dtoResponse, HttpStatus.OK);
     }
 
     @GetMapping("/novoBaralhoEmbaralhado/")
     public ResponseEntity novoBaralhoEmbaralhado(){
-        Map<String, Object> dtoResponse = novoBaralhoEmbaralhadoService.execute();
+        Map<String, Object> dtoResponse = novoBaralhoService.novoBaralhoEmbaralhado();
         return new ResponseEntity(dtoResponse, HttpStatus.OK);
     }
 
     @GetMapping("/novoBaralhoParcial/")
     public ResponseEntity novoBaralhoParcial(@RequestParam("cards") String cards){
-        Map<String, Object> dtoResponse = novoBaralhoParcialEmbaralhadoService.execute(cards);
+        Map<String, Object> dtoResponse = novoBaralhoService.novoBaralhoParcialEmbaralhado(cards);
         return new ResponseEntity(dtoResponse, HttpStatus.OK);
     }
 
