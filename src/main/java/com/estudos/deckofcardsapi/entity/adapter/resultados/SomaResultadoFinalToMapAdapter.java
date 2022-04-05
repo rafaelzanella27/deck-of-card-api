@@ -1,5 +1,6 @@
 package com.estudos.deckofcardsapi.entity.adapter.resultados;
 
+import com.estudos.deckofcardsapi.domain.JogadorDomain;
 import com.estudos.deckofcardsapi.enums.ValorType;
 
 import java.util.*;
@@ -15,47 +16,44 @@ public class SomaResultadoFinalToMapAdapter {
     }
 
 
-    public Map<String, Object> geraResultado(Map<String, Object> retornoJogador1 ,Map<String, Object> retornoJogador2, Map<String, Object> retornoJogador3, Map<String, Object> retornoJogador4){
+    public Map<String, Object> geraResultado(Map<String, Object> retornoApiExterna, Map<String, Object> retornoApiExterna2, Map<String, Object> retornoApiExterna3, Map<String, Object> retornoApiExterna4){
         Map<String, Object> resultadoMap = new HashMap<>();
+        Map<String, Object> resultadoDetalhadoMap = new HashMap<>();
+        List<JogadorDomain> totais = new ArrayList<>();
 
-        Map<String, Object> pilesMap = (Map<String, Object>) retornoJogador1.get("piles");
-            if (Objects.nonNull(pilesMap) && pilesMap.containsKey("jogador1")){
-                Map<String, Object> jogador1 = this.jogador1(pilesMap);
-                resultadoMap.put("Jogador1:", jogador1.get("somatoria"));
+        Map<String, Object> retornoApi = (Map<String, Object>) retornoApiExterna.get("piles");
+            if (Objects.nonNull(retornoApi) && retornoApi.containsKey("jogador1")){
+                Map<String, Object> jogador1 = this.jogador1((Map<String, Object>) retornoApi.get("jogador1"));
+                resultadoDetalhadoMap.put("Jogador1 obteve:", jogador1.get("somatoria") + " pontos");
+                totais.add(new JogadorDomain("jogador1",Integer.parseInt(jogador1.get("somatoria").toString())));
             }
-        Map<String, Object> pilesMap2 = (Map<String, Object>) retornoJogador2.get("piles");
-            if (Objects.nonNull(pilesMap2) && pilesMap2.containsKey("jogador2")){
-                Map<String, Object> jogador2 = this.jogador2(pilesMap2);
-                resultadoMap.put("Jogador2:", jogador2.get("somatoria"));
+        Map<String, Object> retornoApi2 = (Map<String, Object>) retornoApiExterna2.get("piles");
+            if (Objects.nonNull(retornoApi2) && retornoApi2.containsKey("jogador2")){
+                Map<String, Object> jogador2 = this.jogador2((Map<String, Object>) retornoApi2.get("jogador2"));
+                resultadoDetalhadoMap.put("Jogador2 obteve:", jogador2.get("somatoria") + " pontos");
+                totais.add(new JogadorDomain("jogador2",Integer.parseInt(jogador2.get("somatoria").toString())));
             }
-        Map<String, Object> pilesMap3 = (Map<String, Object>) retornoJogador3.get("piles");
-            if (Objects.nonNull(pilesMap3) && pilesMap3.containsKey("jogador3")){
-                Map<String, Object> jogador3 = this.jogador3(pilesMap3);
-                resultadoMap.put("Jogador3:", jogador3.get("somatoria"));
+        Map<String, Object> retornoApi3 = (Map<String, Object>) retornoApiExterna3.get("piles");
+            if (Objects.nonNull(retornoApi3) && retornoApi3.containsKey("jogador3")){
+                Map<String, Object> jogador3 = this.jogador3((Map<String, Object>) retornoApi3.get("jogador3"));
+                resultadoDetalhadoMap.put("Jogador3 obteve:", jogador3.get("somatoria") + " pontos");
+                totais.add(new JogadorDomain("jogador3",Integer.parseInt(jogador3.get("somatoria").toString())));
             }
-        Map<String, Object> pilesMap4 = (Map<String, Object>) retornoJogador4.get("piles");
-           if (Objects.nonNull(pilesMap4) && pilesMap4.containsKey("jogador4")){
-               Map<String, Object> jogador4 = this.jogador4(pilesMap4);
-               resultadoMap.put("Jogador4:", jogador4.get("somatoria"));
+        Map<String, Object> retornoApi4 = (Map<String, Object>) retornoApiExterna4.get("piles");
+           if (Objects.nonNull(retornoApi4) && retornoApi4.containsKey("jogador4")){
+               Map<String, Object> jogador4 = this.jogador4((Map<String, Object>) retornoApi4.get("jogador4"));
+               resultadoDetalhadoMap.put("Jogador4 obteve:", jogador4.get("somatoria") + " pontos");
+               totais.add(new JogadorDomain("jogador4",Integer.parseInt(jogador4.get("somatoria").toString())));
            }
+
+           totais.sort(Comparator.comparingInt(JogadorDomain::getPontos));
+
+           resultadoMap.put("Colocação do menor para o maior", totais);
+           resultadoMap.put("Estatísticas do jogo", resultadoDetalhadoMap);
 
         return resultadoMap;
     }
 
-//    private Boolean verificarEmpate(Map<String, Object> resultadoMap){
-//        ArrayList<Integer> resultadoList = new ArrayList<>();
-//        Integer j1 = Integer.parseInt(resultadoMap.get("jogador1").toString());
-//        Integer j2 = Integer.parseInt(resultadoMap.get("jogador2").toString());
-//        Integer j3 = Integer.parseInt(resultadoMap.get("jogador3").toString());
-//        Integer j4 = Integer.parseInt(resultadoMap.get("jogador4").toString());
-//        resultadoList.add(j1);
-//        resultadoList.add(j2);
-//        resultadoList.add(j3);
-//        resultadoList.add(j4);
-//        Integer resultado = resu
-//
-//        return resultadoFinal;
-//    }
 
     private Integer soma(List<Map<String, Object>> cardsList){
         Integer resultado = 0;
@@ -66,65 +64,48 @@ public class SomaResultadoFinalToMapAdapter {
     }
 
 
-    private Map<String, Object> jogador1 (Map<String, Object> pilhas){
+    private Map<String, Object> jogador1 (Map<String, Object> jogador1Externo){
         Map<String, Object> jogador1 = new HashMap<>();
 
-        if (Objects.nonNull(pilhas)){
-            if (pilhas.containsKey("jogador1") && Objects.nonNull(pilhas.get("jogador1"))){
-                Map<String, Object> jogador1Api = (Map<String, Object>) pilhas.get("jogador1");
-
-                if (jogador1Api.containsKey("cards") && Objects.nonNull(jogador1Api.get("cards"))){
-                    List<Map<String, Object>> cardsListApi = (List<Map<String, Object>>) jogador1Api.get("cards");
-                    jogador1.put("somatoria", this.soma(this.converteCartas(cardsListApi)));
-                }
+        if (Objects.nonNull(jogador1Externo)){
+            if (jogador1Externo.containsKey("cards") && Objects.nonNull(jogador1Externo.get("cards"))){
+                List<Map<String, Object>> cardsListApi = (List<Map<String, Object>>) jogador1Externo.get("cards");
+                jogador1.put("somatoria", this.soma(this.converteCartas(cardsListApi)));
             }
-        }return jogador1;
+        } return jogador1;
     }
 
-    private Map<String, Object> jogador2 (Map<String, Object> pilhas){
+    private Map<String, Object> jogador2 (Map<String, Object> jogador2Externo){
         Map<String, Object> jogador2 = new HashMap<>();
 
-        if (Objects.nonNull(pilhas)){
-            if (pilhas.containsKey("jogador2") && Objects.nonNull(pilhas.get("jogador2"))){
-                Map<String, Object> jogador2Api = (Map<String, Object>) pilhas.get("jogador2");
-
-                if (jogador2Api.containsKey("cards") && Objects.nonNull(jogador2Api.get("cards"))){
-                    List<Map<String, Object>> cardsListApi = (List<Map<String, Object>>) jogador2Api.get("cards");
-                    jogador2.put("somatoria", this.soma(this.converteCartas(cardsListApi)));
-                }
+        if (Objects.nonNull(jogador2Externo)){
+            if (jogador2Externo.containsKey("cards") && Objects.nonNull(jogador2Externo.get("cards"))){
+                List<Map<String, Object>> cardsListApi = (List<Map<String, Object>>) jogador2Externo.get("cards");
+                jogador2.put("somatoria", this.soma(this.converteCartas(cardsListApi)));
             }
-        }return jogador2;
+        } return jogador2;
     }
 
-    private Map<String, Object> jogador3 (Map<String, Object> pilhas){
+    private Map<String, Object> jogador3 (Map<String, Object> jogador3Externo){
         Map<String, Object> jogador3 = new HashMap<>();
 
-        if (Objects.nonNull(pilhas)){
-            if (pilhas.containsKey("jogador3") && Objects.nonNull(pilhas.get("jogador3"))){
-                Map<String, Object> jogadorApi = (Map<String, Object>) pilhas.get("jogador3");
-
-                if (jogadorApi.containsKey("cards") && Objects.nonNull(jogadorApi.get("cards"))){
-                    List<Map<String, Object>> cardsListApi = (List<Map<String, Object>>) jogadorApi.get("cards");
-
-                    jogador3.put("somatoria", this.soma(this.converteCartas(cardsListApi)));
-                }
+        if (Objects.nonNull(jogador3Externo)){
+            if (jogador3Externo.containsKey("cards") && Objects.nonNull(jogador3Externo.get("cards"))){
+                List<Map<String, Object>> cardsListApi = (List<Map<String, Object>>) jogador3Externo.get("cards");
+                jogador3.put("somatoria", this.soma(this.converteCartas(cardsListApi)));
             }
-        }return jogador3;
+        } return jogador3;
     }
 
-    private Map<String, Object> jogador4 (Map<String, Object> pilhas){
+    private Map<String, Object> jogador4 (Map<String, Object> jogador4Externo){
         Map<String, Object> jogador4 = new HashMap<>();
 
-        if (Objects.nonNull(pilhas)){
-            if (pilhas.containsKey("jogador4") && Objects.nonNull(pilhas.get("jogador4"))){
-                Map<String, Object> jogadorApi = (Map<String, Object>) pilhas.get("jogador4");
-
-                if (jogadorApi.containsKey("cards") && Objects.nonNull(jogadorApi.get("cards"))){
-                    List<Map<String, Object>> cardsListApi = (List<Map<String, Object>>) jogadorApi.get("cards");
-                    jogador4.put("somatoria", this.soma(this.converteCartas(cardsListApi)));
-                }
+        if (Objects.nonNull(jogador4Externo)){
+            if (jogador4Externo.containsKey("cards") && Objects.nonNull(jogador4Externo.get("cards"))){
+                List<Map<String, Object>> cardsListApi = (List<Map<String, Object>>) jogador4Externo.get("cards");
+                jogador4.put("somatoria", this.soma(this.converteCartas(cardsListApi)));
             }
-        }return jogador4;
+        } return jogador4;
     }
 
     private List<Map<String, Object>> converteCartas(List<Map<String, Object>> cardsList){

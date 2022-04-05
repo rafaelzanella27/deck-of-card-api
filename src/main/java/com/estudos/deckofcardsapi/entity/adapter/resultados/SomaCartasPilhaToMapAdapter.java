@@ -68,7 +68,7 @@ public class SomaCartasPilhaToMapAdapter {
                 if (jogador1Api.containsKey("cartas") && Objects.nonNull(jogador1Api.get("cartas"))){
                     List<Map<String, Object>> cardsListApi = (List<Map<String, Object>>) jogador1Api.get("cartas");
                     jogador1.put("cartas", this.converteCartas(cardsListApi));
-                    jogador1.put("somatoria", this.soma(cardsListApi));
+                    jogador1.put("Total de pontos", this.soma(cardsListApi));
                 }
                 pilhasMap.put("jogador1", jogador1);
             }
@@ -89,7 +89,7 @@ public class SomaCartasPilhaToMapAdapter {
                 if (jogador2Api.containsKey("cartas") && Objects.nonNull(jogador2Api.get("cartas"))){
                     List<Map<String, Object>> cardsListApi = (List<Map<String, Object>>) jogador2Api.get("cartas");
                     jogador2.put("cartas", this.converteCartas(cardsListApi));
-                    jogador2.put("somatoria", this.soma(cardsListApi));
+                    jogador2.put("Total de pontos", this.soma(cardsListApi));
                 }
                 pilhasMap.put("jogador2", jogador2);
             }
@@ -110,7 +110,7 @@ public class SomaCartasPilhaToMapAdapter {
                 if (jogadorApi.containsKey("cartas") && Objects.nonNull(jogadorApi.get("cartas"))){
                     List<Map<String, Object>> cardsListApi = (List<Map<String, Object>>) jogadorApi.get("cartas");
                     jogador3.put("cartas", this.converteCartas(cardsListApi));
-                    jogador3.put("somatoria", this.soma(cardsListApi));
+                    jogador3.put("Total de pontos", this.soma(cardsListApi));
                 }
                 pilhasMap.put("jogador3", jogador3);
             }
@@ -131,7 +131,7 @@ public class SomaCartasPilhaToMapAdapter {
                 if (jogadorApi.containsKey("cartas") && Objects.nonNull(jogadorApi.get("cartas"))){
                     List<Map<String, Object>> cardsListApi = (List<Map<String, Object>>) jogadorApi.get("cartas");
                     jogador4.put("cartas", this.converteCartas(cardsListApi));
-                    jogador4.put("somatoria", this.soma(cardsListApi));
+                    jogador4.put("Total de pontos", this.soma(cardsListApi));
                 }
                 pilhasMap.put("jogador4", jogador4);
             }

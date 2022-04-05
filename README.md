@@ -11,6 +11,7 @@ FUNÇÕES ATIVAS:
 7) Listar cartas da Pilha (Listing Cards in Piles).
 8) Adicionando cartas a Pilha (Adding to Piles).
 9) Tirar cartas da Pilha (Drawing from Piles).
+10) Gera resultado.
 
 FUNÇÕES PENDENTES:
 1) Retornar cartas ao baralho principal (Returning cards to the deck). -- (EM DESENVOLVIMENTO). 
