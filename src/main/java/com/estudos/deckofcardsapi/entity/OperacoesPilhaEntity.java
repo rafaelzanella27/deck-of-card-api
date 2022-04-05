@@ -3,7 +3,7 @@ package com.estudos.deckofcardsapi.entity;
 import com.estudos.deckofcardsapi.domain.BaralhoDomain;
 import com.estudos.deckofcardsapi.entity.adapter.AdicionaCartaPilhaToMapAdapter;
 import com.estudos.deckofcardsapi.entity.adapter.ConverteToBaralhoDomainAdapter;
-import com.estudos.deckofcardsapi.entity.adapter.SomaCartasPilhaToMapAdapter;
+import com.estudos.deckofcardsapi.entity.adapter.resultados.SomaCartasPilhaToMapAdapter;
 
 import java.util.Map;
 import java.util.Objects;

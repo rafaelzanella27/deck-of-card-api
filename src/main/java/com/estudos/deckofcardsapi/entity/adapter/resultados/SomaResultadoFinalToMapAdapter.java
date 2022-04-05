@@ -1,4 +1,4 @@
-package com.estudos.deckofcardsapi.entity.adapter;
+package com.estudos.deckofcardsapi.entity.adapter.resultados;
 
 import com.estudos.deckofcardsapi.enums.ValorType;
 

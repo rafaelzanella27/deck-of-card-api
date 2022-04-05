@@ -15,9 +15,6 @@ import java.util.Map;
 public class Controller {
 
     @Autowired
-    CartaService cartaService;
-
-    @Autowired
     BaralhoService baralhoService;
 
     @Autowired
@@ -52,7 +49,7 @@ public class Controller {
 
     @GetMapping("/tirarCarta/baralho/{deck_id}")
     public ResponseEntity tirarCarta(@PathVariable("deck_id") String deck_id, @RequestParam("count") String count){
-        Map<String, Object> dtoResponse = cartaService.execute(deck_id, count);
+        Map<String, Object> dtoResponse = baralhoService.tirarCarta(deck_id, count);
         return new ResponseEntity(dtoResponse, HttpStatus.OK);
     }
 

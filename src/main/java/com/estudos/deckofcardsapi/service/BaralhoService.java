@@ -41,4 +41,11 @@ public class BaralhoService {
         BaralhoCriadoEntity baralhoCriadoEntity = BaralhoCriadoEntity.inicializa(novoBaralhoEntity.geraSaida());
         return baralhoCriadoEntity.geraSaida();
     }
+
+    public Map<String, Object> tirarCarta(String deck_id, String count){
+        Map<String, Object> retornoApiExterna = resourceFeignClient.tirarCarta(deck_id, count);
+        NovoBaralhoEntity novoBaralhoEntity = NovoBaralhoEntity.inicializa(retornoApiExterna);
+        BaralhoCriadoEntity baralhoCriadoEntity = BaralhoCriadoEntity.inicializa(novoBaralhoEntity.geraSaida());
+        return baralhoCriadoEntity.geraSaida();
+    }
 }

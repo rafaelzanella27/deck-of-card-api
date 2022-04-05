@@ -1,6 +1,6 @@
 package com.estudos.deckofcardsapi.entity;
 
-import com.estudos.deckofcardsapi.entity.adapter.SomaResultadoFinalToMapAdapter;
+import com.estudos.deckofcardsapi.entity.adapter.resultados.SomaResultadoFinalToMapAdapter;
 
 import java.util.Map;
 

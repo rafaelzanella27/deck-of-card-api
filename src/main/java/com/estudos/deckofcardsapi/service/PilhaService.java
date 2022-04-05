@@ -21,13 +21,6 @@ public class PilhaService {
         return operacoesPilhaEntity.geraSaida();
     }
 
-    public Map<String, Object> embaralharPilha(String deck_id, String pile_name){
-        Map<String, Object> retornoApiExterna = resourceFeignClient.embaralharPilha(deck_id, pile_name);
-        NovoBaralhoEntity novoBaralhoEntity = NovoBaralhoEntity.inicializa(retornoApiExterna);
-        BaralhoCriadoEntity baralhoCriadoEntity = BaralhoCriadoEntity.inicializa(novoBaralhoEntity.geraSaida());
-        return baralhoCriadoEntity.geraSaida();
-    }
-
     public Map<String, Object> listarPilha(String deck_id, String pile_name){
         Map<String, Object> retornoApiExterna = resourceFeignClient.listarPilha(deck_id, pile_name);
         OperacoesPilhaEntity operacoesPilhaEntity = OperacoesPilhaEntity.inicializa(retornoApiExterna, pile_name);
@@ -38,5 +31,12 @@ public class PilhaService {
         Map<String, Object> retornoApiExterna = resourceFeignClient.tirarCartaPilha(deck_id, pile_name, count);
         OperacoesPilhaEntity operacoesPilhaEntity = OperacoesPilhaEntity.inicializa(retornoApiExterna, pile_name);
         return operacoesPilhaEntity.geraSaida();
+    }
+
+    public Map<String, Object> embaralharPilha(String deck_id, String pile_name){
+        Map<String, Object> retornoApiExterna = resourceFeignClient.embaralharPilha(deck_id, pile_name);
+        NovoBaralhoEntity novoBaralhoEntity = NovoBaralhoEntity.inicializa(retornoApiExterna);
+        BaralhoCriadoEntity baralhoCriadoEntity = BaralhoCriadoEntity.inicializa(novoBaralhoEntity.geraSaida());
+        return baralhoCriadoEntity.geraSaida();
     }
 }
