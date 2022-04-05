@@ -4,6 +4,7 @@ import com.estudos.deckofcardsapi.domain.BaralhoDomain;
 import com.estudos.deckofcardsapi.entity.adapter.DeckToBaralhoDomainAdapter;
 
 import java.util.Map;
+import java.util.Objects;
 
 public class NovoBaralhoEntity {
 
@@ -11,7 +12,6 @@ public class NovoBaralhoEntity {
 
     private NovoBaralhoEntity(Map<String, Object> entrada){
         this.entrada = entrada;
-        this.geraSaida();
     }
 
     public static NovoBaralhoEntity inicializa(Map<String, Object> entrada){
@@ -19,8 +19,11 @@ public class NovoBaralhoEntity {
     }
 
     public BaralhoDomain geraSaida(){
-        BaralhoDomain baralhoDomain = new DeckToBaralhoDomainAdapter().converte(this.entrada);
-        return baralhoDomain;
+        if (Objects.nonNull(entrada)){
+            BaralhoDomain baralhoDomain = new DeckToBaralhoDomainAdapter().converte(this.entrada);
+            return baralhoDomain;
+        }
+        return null;
     }
 
 }

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.Map;
 
 @Service
-public class NovoBaralhoService {
+public class BaralhoService {
 
     @Autowired
     ResourceFeignClient resourceFeignClient;
@@ -30,6 +30,13 @@ public class NovoBaralhoService {
 
     public Map<String, Object> novoBaralhoParcialEmbaralhado(String cards){
         Map<String, Object> retornoApiExterna = resourceFeignClient.novoBaralhoParcialEmbaralhado(cards);
+        NovoBaralhoEntity novoBaralhoEntity = NovoBaralhoEntity.inicializa(retornoApiExterna);
+        BaralhoCriadoEntity baralhoCriadoEntity = BaralhoCriadoEntity.inicializa(novoBaralhoEntity.geraSaida());
+        return baralhoCriadoEntity.geraSaida();
+    }
+
+    public Map<String, Object> reembaralharBaralho(String deck_id){
+        Map<String, Object> retornoApiExterna = resourceFeignClient.reembaralhar(deck_id);
         NovoBaralhoEntity novoBaralhoEntity = NovoBaralhoEntity.inicializa(retornoApiExterna);
         BaralhoCriadoEntity baralhoCriadoEntity = BaralhoCriadoEntity.inicializa(novoBaralhoEntity.geraSaida());
         return baralhoCriadoEntity.geraSaida();

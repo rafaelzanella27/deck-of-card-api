@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class SomarCartaPilhaService {
+public class GeraResultadosService {
 
     @Autowired
     ResourceFeignClient resourceFeignClient;

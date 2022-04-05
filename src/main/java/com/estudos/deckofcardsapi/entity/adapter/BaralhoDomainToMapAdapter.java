@@ -6,14 +6,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class BaralhoCriadoToMapAdapter {
+public class BaralhoDomainToMapAdapter {
 
-    private BaralhoCriadoToMapAdapter(){
+    private BaralhoDomainToMapAdapter(){
 
     }
 
-    public static BaralhoCriadoToMapAdapter inicializa(){
-        return new BaralhoCriadoToMapAdapter();
+    public static BaralhoDomainToMapAdapter inicializa(){
+        return new BaralhoDomainToMapAdapter();
     }
 
     public Map<String, Object> converte(BaralhoDomain baralhoDomain){

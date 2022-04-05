@@ -9,13 +9,13 @@ import org.springframework.stereotype.Service;
 import java.util.Map;
 
 @Service
-public class EmbaralharPilhaService {
+public class CartaService {
 
     @Autowired
     ResourceFeignClient resourceFeignClient;
 
-    public Map<String, Object> execute(String deck_id, String pile_name){
-        Map<String, Object> retornoApiExterna = resourceFeignClient.embaralharPilha(deck_id, pile_name);
+    public Map<String, Object> execute(String deck_id, String count){
+        Map<String, Object> retornoApiExterna = resourceFeignClient.tirarCarta(deck_id, count);
         NovoBaralhoEntity novoBaralhoEntity = NovoBaralhoEntity.inicializa(retornoApiExterna);
         BaralhoCriadoEntity baralhoCriadoEntity = BaralhoCriadoEntity.inicializa(novoBaralhoEntity.geraSaida());
         return baralhoCriadoEntity.geraSaida();

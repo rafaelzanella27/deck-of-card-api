@@ -16,20 +16,14 @@ public class OperacoesPilhaEntity {
     private OperacoesPilhaEntity(Map<String, Object> entrada, String pile_name){
         this.entrada = entrada;
         this.pilha = pile_name;
-        this.converteToBaralhoDomain();
     }
 
     public static OperacoesPilhaEntity inicializa(Map<String, Object> entrada, String pile_name){
         return new OperacoesPilhaEntity(entrada, pile_name);
     }
 
-    public BaralhoDomain converteToBaralhoDomain(){
-        BaralhoDomain baralhoDomain = new ConverteToBaralhoDomainAdapter().converte(this.entrada, this.pilha);
-        return baralhoDomain;
-    }
-
     public Map<String, Object> geraSaida(){
-        BaralhoDomain baralhoDomain = this.converteToBaralhoDomain();
+        BaralhoDomain baralhoDomain = new ConverteToBaralhoDomainAdapter().converte(this.entrada, this.pilha);
         if (Objects.nonNull(baralhoDomain)){
             Map<String, Object> saida = AdicionaCartaPilhaToMapAdapter.inicializa().execute(baralhoDomain, this.pilha);
             return saida ;
@@ -38,7 +32,7 @@ public class OperacoesPilhaEntity {
     }
 
     public Map<String, Object> geraSomatoriaCartas(){
-        BaralhoDomain baralhoDomain = this.converteToBaralhoDomain();
+        BaralhoDomain baralhoDomain = new ConverteToBaralhoDomainAdapter().converte(this.entrada, this.pilha);
         if (Objects.nonNull(baralhoDomain)){
             Map<String, Object> saida = SomaCartasPilhaToMapAdapter.inicializa().execute(baralhoDomain, this.pilha);
             return saida ;
@@ -46,11 +40,4 @@ public class OperacoesPilhaEntity {
         return null;
     }
 
-    public String getPilha(){
-        return this.pilha;
-    }
-
-    public Map<String, Object> getEntrada(){
-        return this.entrada;
-    }
 }
